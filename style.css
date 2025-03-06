@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.game-area {
+    position: relative;
+    width: 120vmin;
+    /* Genişlik 60 kare x 2 */
+    height: 80vmin;
+    /* Yükseklik 40 kare x 2 */
+    background-color: black;
+    /* Oyun alanı siyah */
+    border: 2px solid #fff;
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+    /* 60 sütun */
+    grid-template-rows: repeat(40, 1fr);
+    /* 40 satır */
+}
+
+.snake {
+    background-color: blue;
+    /* Yılanın gövdesi mavi */
+    border: 1px solid black;
+    z-index: 1;
+    /* Yılanın gövdesi orta katmanda */
+}
+
+.head {
+    background-color: green;
+    /* Yılanın başı yeşil */
+    z-index: 2;
+    /* Yılanın başı en üst katmanda */
+}
+
+.bait {
+    background-color: red;
+    /* Yem kırmızı */
+    border: 1px solid black;
+    z-index: 1;
+    /* Yem orta katmanda */
+}
+
+.info-display {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    /* length-display ve autopilotIndicator aynı katmanda */
+}
+
+.length-display {
+    font-size: 24px;
+    color: white;
+}
+
+#autopilotIndicator {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#autopilotStatus {
+    color: red;
+    /* Varsayılan olarak kırmızı (kapalı) */
+    font-weight: bold;
+}
+
+#autopilotStatus.active {
+    color: green;
+    /* Autopilot açıkken yeşil */
+}
+
+.game-over-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: white;
+    z-index: 4;
+    /* Oyun bitiş mesajı en üst katmanda */
+}
