@@ -4,7 +4,7 @@
 
 ***
 
-- Oyun alanı "60 x 40" olarak belirlenmiş olup, toplam 2400 karedir.
+- Oyun alanı "50 x 30" olarak belirlenmiş olup, toplam 1500 karedir.
 
 - Yılan, duvarlardan ve kendi kuyruğu üzerinden geçebilmektedir.
 
@@ -14,7 +14,7 @@
 
 - Yılanın başlangıç uzunluğu 1 karedir.
 
-- Uzunluk 800 olduğunda (oyun alanının 3'te 1'i) oyun biter.
+- Uzunluk 300 olduğunda (oyun alanının 1/5'i) oyun biter.
 
 - Mouse "sağ tık" ile menü açma özelliği devre dışı bırakılmıştır.
 
@@ -36,4 +36,4 @@
 
 # Düzeltilecek veya eklenecek özellikler
 
-- Auto pilot kullanılırken yılanın duvarlardan geçmesi sağlanacak.
+- Auto pilot kullanılırken, yılanın duvarlardan geçebilme özelliğini kullanabilmesi sağlanacak.

@@ -9,48 +9,68 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(53, 53, 53);
+    background: radial-gradient(circle, #2c3e50 0%, #000000 100%);
     color: white;
     font-family: Arial, sans-serif;
 }
 
 .game-area {
     position: relative;
-    width: 120vmin;
-    /* Genişlik 60 kare x 2 */
-    height: 80vmin;
-    /* Yükseklik 40 kare x 2 */
+    /* Kare boyutunu 2.5vmin değerinde sabit tutmak için: 50*2.5=125, 30*2.5=75 */
+    width: 125vmin;
+    height: 75vmin;
     background-color: black;
     /* Oyun alanı siyah */
-    border: 2px solid #fff;
+    border: 2px solid #555;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     display: grid;
-    grid-template-columns: repeat(60, 1fr);
-    /* 60 sütun */
-    grid-template-rows: repeat(40, 1fr);
-    /* 40 satır */
+    grid-template-columns: repeat(50, 1fr);
+    /* 50 sütun */
+    grid-template-rows: repeat(30, 1fr);
+    /* 30 satır */
+    overflow: hidden;
+}
+
+.cell {
+    border: 0.1px solid rgba(255, 255, 255, 0.05);
 }
 
 .snake {
-    background-color: blue;
-    /* Yılanın gövdesi mavi */
-    border: 1px solid black;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    /* Yılanın gövdesinin rengi */
+    border-radius: 4px;
     z-index: 1;
-    /* Yılanın gövdesi orta katmanda */
+    /* Yılanın gövdesi için z-index değeri */
 }
 
 .head {
-    background-color: green;
-    /* Yılanın başı yeşil */
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    /* Yılanın başının rengi */
+    border-radius: 4px;
     z-index: 2;
-    /* Yılanın başı en üst katmanda */
+    /* Yılanın başı için z-index değeri */
 }
 
 .bait {
-    background-color: red;
-    /* Yem kırmızı */
-    border: 1px solid black;
+    background: radial-gradient(circle, #ff4d4d, #b30000);
+    /* Yem rengi */
+    border-radius: 50%;
     z-index: 1;
-    /* Yem orta katmanda */
+    /* Yem için z-index değeri */
+    animation: pulse 0.8s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.85);
+        box-shadow: 0 0 5px red;
+    }
+
+    to {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px red;
+    }
 }
 
 .info-display {
@@ -62,7 +82,7 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 3;
-    /* length-display ve autopilotIndicator aynı katmanda */
+    /* length-display ve autopilotIndicator için z-index değeri */
 }
 
 .length-display {
@@ -74,12 +94,13 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     font-size: 16px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     gap: 5px;
+    backdrop-filter: blur(4px);
 }
 
 #autopilotStatus {
@@ -89,8 +110,8 @@ body {
 }
 
 #autopilotStatus.active {
-    color: green;
-    /* Autopilot açıkken yeşil */
+    color: #2ecc71;
+    /* Autopilot açık iken yeşil */
 }
 
 .game-over-message {
@@ -98,8 +119,9 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 32px;
-    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    color: #f1c40f;
     z-index: 4;
-    /* Oyun bitiş mesajı en üst katmanda */
+    /* Oyun bitiş mesajı için z-index değeri */
 }

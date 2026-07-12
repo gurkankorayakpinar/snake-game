@@ -1,12 +1,12 @@
 const gameArea = document.querySelector('.game-area');
-const gridSize = { width: 60, height: 40 }; // 60 x 40 oyun alanı
-const initialSnakeLength = 1; // Yılanın başlangıç uzunluğu = 1
+const gridSize = { width: 50, height: 30 }; // Oyun alanı
+const initialSnakeLength = 1; // Yılanın başlangıç uzunluğu
 let snake = [{ x: 5, y: 5 }]; // Yılanın başlangıç pozisyonu
 let direction = { x: 1, y: 0 }; // Yılanın başlangıç yönü
-let bait = { x: 10, y: 10 }; // Yem'in başlangıç pozisyonu (Fakat ilk yem konumu da rastgele oluyor.)
+let bait = { x: 10, y: 10 }; // Yem'in başlangıç pozisyonu (İlk yem için rastgele bir konum belirlenir.)
 let speed = 75; // Yılanın hızı = 75 milisaniye
 let gameInterval;
-const maxLength = 800; // Oyunun biteceği uzunluk.
+const maxLength = 300; // Oyunun sona ereceği uzunluk.
 let autopilot = false;
 let pathToBait = [];
 
@@ -22,7 +22,7 @@ function createGrid() {
     }
 }
 
-// Yılanı ve yem'i çiz
+// Yılan ve yem çizilmesi
 function draw() {
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => cell.classList.remove('snake', 'bait', 'head'));
@@ -37,7 +37,7 @@ function draw() {
         }
     });
 
-    // Yem'i çiz
+    // Yem
     const baitIndex = bait.y * gridSize.width + bait.x;
     cells[baitIndex].classList.add('bait');
 
@@ -61,7 +61,7 @@ function updateLengthDisplay() {
     lengthDisplay.textContent = `Uzunluk: ${snake.length}`; // "Length" yerine "Uzunluk"
 }
 
-// Auto pilot'un bir sonraki yem'e giden en kısa yolu bulması için BFS (Breadth First Search) fonksiyonu
+// Auto pilot sisteminin bir sonraki yem için en kısa yolu bulması amacıyla BFS (Breadth First Search) fonksiyonu
 function bfs(start, target) {
     const queue = [{ position: start, path: [] }];
     const visited = new Set();
@@ -110,7 +110,7 @@ function moveSnake() {
 
     snake.unshift(head);
 
-    // Yem'i yedi mi? Kontrol et.
+    // Yem alındı mı? Kontrol et.
     if (head.x === bait.x && head.y === bait.y) {
         placeBait();
         if (autopilot) {
@@ -121,7 +121,7 @@ function moveSnake() {
     }
 }
 
-// Yem'i rastgele şekilde yerleştir.
+// Yem, rastgele şekilde yerleştirilir.
 function placeBait() {
     let newBait;
     do {
@@ -137,7 +137,7 @@ function placeBait() {
     }
 }
 
-// Autopilot durumunu güncelle
+// Auto pilot durumunu güncelle.
 function updateAutopilotDisplay() {
     const autopilotStatus = document.getElementById('autopilotStatus');
     if (autopilot) {
@@ -181,7 +181,7 @@ function endGame() {
     document.body.appendChild(gameOverMessage);
 }
 
-// Oyunu başlat.
+// Oyunu başlatma fonksiyonu.
 function startGame() {
     createGrid();
     placeBait();
