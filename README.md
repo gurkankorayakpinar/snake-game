@@ -12,9 +12,9 @@
 
 - Oyun alanında rastgele bir şekilde ortaya çıkan yemlerin, yılanın kuyruğu üzerinde oluşmaları engellenmiştir.
 
-- Yılanın uzunluğu, sol üst köşede görülebilmektedir. (Başlangıç uzunluğu 1 birimdir.)
+- Yılanın uzunluğu, sol üst köşede görülebilmektedir.
 
-- Yılanın uzunluğu 356 birim olduğunda oyun biter.
+- Yılanın uzunluğu 356 birim olduğunda oyun sona erer.
 
 - Mouse "sağ tık" ile menü açma özelliği devre dışı bırakılmıştır.
 
@@ -26,6 +26,6 @@
 
 - Sağ üst köşede, auto pilot sisteminin açık veya kapalı olduğu bilgisi mevcuttur.
 
-- Auto pilot, bir sonraki hedefe (dik açılar oluşturarak) ulaşabileceği en kısa mesafe için BFS (Breadth First Search) algoritmasını kullanmaktadır. Ayrıca auto pilot, en kısa mesafeyi hesaplarken duvarlardan da geçebilmektedir.
+- Auto pilot, bir sonraki hedefe (duvarlardan geçerek veya oyun alanı içerisinde manevra yaparak) ulaşabileceği en kısa mesafe için BFS (Breadth First Search) algoritmasını kullanmaktadır.
 
 - Auto pilot kullanılırken "yön tuşları" çalışmamaktadır.
