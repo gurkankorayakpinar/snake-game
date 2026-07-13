@@ -176,7 +176,7 @@ document.addEventListener('contextmenu', (event) => {
 function endGame() {
     clearInterval(gameInterval); // Oyun döngüsünü durdur.
     const gameOverMessage = document.createElement('div');
-    gameOverMessage.textContent = 'Kazandınız!';
+    gameOverMessage.textContent = 'OYUN SONA ERDİ';
     gameOverMessage.classList.add('game-over-message');
     document.body.appendChild(gameOverMessage);
 }
