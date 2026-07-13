@@ -1,12 +1,12 @@
 const gameArea = document.querySelector('.game-area');
-const gridSize = { width: 50, height: 30 }; // Oyun alanı
+const gridSize = { width: 49, height: 29 }; // Oyun alanı (BFS algoritmasının duvarlardan geçerken doğru çalışması için tek sayılar tercih edildi.)
 const initialSnakeLength = 1; // Yılanın başlangıç uzunluğu
 let snake = [{ x: 5, y: 5 }]; // Yılanın başlangıç pozisyonu
 let direction = { x: 1, y: 0 }; // Yılanın başlangıç yönü
-let bait = { x: 10, y: 10 }; // Yem'in başlangıç pozisyonu (İlk yem için rastgele bir konum belirlenir.)
+let bait = { x: 10, y: 10 };
 let speed = 75; // Yılanın hızı = 75 milisaniye
 let gameInterval;
-const maxLength = 300; // Oyunun sona ereceği uzunluk.
+const maxLength = 356; // Oyunun sona ereceği uzunluk
 let autopilot = false;
 let pathToBait = [];
 
@@ -73,11 +73,12 @@ function bfs(start, target) {
             return path;
         }
 
+        // Komşular hesaplanırken duvarlardan geçiş (modulo) eklendi.
         const neighbors = [
-            { x: position.x + 1, y: position.y },
-            { x: position.x - 1, y: position.y },
-            { x: position.x, y: position.y + 1 },
-            { x: position.x, y: position.y - 1 },
+            { x: (position.x + 1) % gridSize.width, y: position.y },
+            { x: (position.x - 1 + gridSize.width) % gridSize.width, y: position.y },
+            { x: position.x, y: (position.y + 1) % gridSize.height },
+            { x: position.x, y: (position.y - 1 + gridSize.height) % gridSize.height },
         ];
 
         for (const neighbor of neighbors) {
@@ -96,7 +97,16 @@ function bfs(start, target) {
 function moveSnake() {
     if (autopilot && pathToBait.length > 0) {
         const nextPosition = pathToBait[0];
-        direction = { x: nextPosition.x - snake[0].x, y: nextPosition.y - snake[0].y };
+
+        // Duvar geçişli en kısa mesafe için yön belirleme logic'i
+        let dx = nextPosition.x - snake[0].x;
+        let dy = nextPosition.y - snake[0].y;
+
+        // Eğer fark 1'den büyükse, duvarın diğer tarafına geçilmiştir.
+        if (Math.abs(dx) > 1) dx = dx > 0 ? -1 : 1;
+        if (Math.abs(dy) > 1) dy = dy > 0 ? -1 : 1;
+
+        direction = { x: dx, y: dy };
         pathToBait.shift();
     }
 
@@ -152,10 +162,11 @@ function updateAutopilotDisplay() {
 // Keyboard input
 function handleInput(event) {
     const key = event.key;
-    if (key === 'ArrowUp' && direction.y === 0) direction = { x: 0, y: -1 };
-    if (key === 'ArrowDown' && direction.y === 0) direction = { x: 0, y: 1 };
-    if (key === 'ArrowLeft' && direction.x === 0) direction = { x: -1, y: 0 };
-    if (key === 'ArrowRight' && direction.x === 0) direction = { x: 1, y: 0 };
+    // 180 derece dönüş kısıtlaması kaldırıldı (İstek üzerine)
+    if (key === 'ArrowUp') direction = { x: 0, y: -1 };
+    if (key === 'ArrowDown') direction = { x: 0, y: 1 };
+    if (key === 'ArrowLeft') direction = { x: -1, y: 0 };
+    if (key === 'ArrowRight') direction = { x: 1, y: 0 };
 
     // Auto pilot'u aç-kapat
     if (key === 'a' || key === 'A') {
@@ -181,7 +192,6 @@ function endGame() {
     document.body.appendChild(gameOverMessage);
 }
 
-// Oyunu başlatma fonksiyonu.
 function startGame() {
     createGrid();
     placeBait();

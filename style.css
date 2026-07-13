@@ -16,19 +16,19 @@ body {
 
 .game-area {
     position: relative;
-    /* Kare boyutunu 2.5vmin değerinde sabit tutmak için: 50*2.5=125, 30*2.5=75 */
-    width: 125vmin;
-    height: 75vmin;
+    /* 49*2.5 = 122.5vmin , 29*2.5 = 72.5vmin */
+    width: 122.5vmin;
+    height: 72.5vmin;
     background-color: black;
     /* Oyun alanı siyah */
     border: 2px solid #555;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     display: grid;
-    grid-template-columns: repeat(50, 1fr);
-    /* 50 sütun */
-    grid-template-rows: repeat(30, 1fr);
-    /* 30 satır */
+    grid-template-columns: repeat(49, 1fr);
+    /* 49 sütun */
+    grid-template-rows: repeat(29, 1fr);
+    /* 29 satır */
     overflow: hidden;
 }
 
@@ -47,7 +47,7 @@ body {
 .head {
     background: linear-gradient(135deg, #2ecc71, #27ae60);
     /* Yılanın başının rengi */
-    border-radius: 4px;
+    border-radius: 50%;
     z-index: 2;
     /* Yılanın başı için z-index değeri */
 }
@@ -105,13 +105,13 @@ body {
 
 #autopilotStatus {
     color: red;
-    /* Varsayılan olarak kırmızı (kapalı) */
+    /* Varsayılan olarak kırmızı (auto pilot kapalı) */
     font-weight: bold;
 }
 
 #autopilotStatus.active {
     color: #2ecc71;
-    /* Autopilot açık iken yeşil */
+    /* Auto pilot açık iken yeşil */
 }
 
 .game-over-message {
@@ -123,5 +123,5 @@ body {
     font-weight: bold;
     color: #f1c40f;
     z-index: 4;
-    /* Oyun bitiş mesajı için z-index değeri */
+    /* Oyun sonu mesajı için z-index değeri */
 }
