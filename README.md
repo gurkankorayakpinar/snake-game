@@ -12,9 +12,13 @@
 
 - Oyun alanında rastgele bir şekilde ortaya çıkan yemlerin, yılanın kuyruğu üzerinde oluşmaları engellenmiştir.
 
+- Her yem için 10 saniye süre verilmiştir. Bu süre dolmadan yem alınamazsa, oyun kaybedilir.
+
 - Yılanın uzunluğu, sol üst köşede görülebilmektedir.
 
-- Yılanın uzunluğu 356 birim olduğunda oyun sona erer.
+- Yılanın uzunluğu her 50x olduğunda, hızı da artmaktadır. Hız seviyesi, sol alt tarafta gösterilmektedir.
+
+- Yılanın uzunluğu 300 birim olduğunda oyun sona erer.
 
 - Mouse "sağ tık" ile menü açma özelliği devre dışı bırakılmıştır.
 

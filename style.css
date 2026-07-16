@@ -20,7 +20,6 @@ body {
     width: 122.5vmin;
     height: 72.5vmin;
     background-color: black;
-    /* Oyun alanı siyah */
     border: 2px solid #555;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
@@ -114,6 +113,61 @@ body {
     /* Auto pilot açık iken yeşil */
 }
 
+/* Sağ alt köşedeki süre göstergesi */
+.timer-display {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f1c40f;
+    backdrop-filter: blur(5px);
+    z-index: 3;
+}
+
+/* Sol alt köşedeki hız göstergesi */
+.speed-display {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #3498db;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    z-index: 3;
+}
+
+.speed-bars {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    /* Çizgiler arası küçük mesafe */
+}
+
+.bar {
+    width: 30px;
+    height: 4px;
+    background-color: #3498db;
+    border-radius: 2px;
+    transition: opacity 0.3s ease;
+}
+
+.bar.faded {
+    opacity: 0.15;
+    /* Şeffaf görünüm */
+}
+
 .game-over-message {
     position: absolute;
     top: 50%;
@@ -124,4 +178,6 @@ body {
     color: #f1c40f;
     z-index: 4;
     /* Oyun sonu mesajı için z-index değeri */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    text-align: center;
 }
